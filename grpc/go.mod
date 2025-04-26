@@ -2,15 +2,9 @@ module github.com/ggsrc/blueprint-go-toolkits/grpc
 
 go 1.23.0
 
-replace (
-	github.com/ggsrc/blueprint-go-toolkits/env => ../env
-	github.com/ggsrc/blueprint-go-toolkits/interceptor => ../interceptor
-	github.com/ggsrc/blueprint-go-toolkits/zerolog => ../zerolog
-)
-
 require (
-	github.com/ggsrc/blueprint-go-toolkits/env v0.0.0-20250307074235-8cbb76b9e006
-	github.com/ggsrc/blueprint-go-toolkits/interceptor v0.0.0-20250307074235-8cbb76b9e006
+	github.com/ggsrc/blueprint-go-toolkits/env v0.0.0-20250426034842-e0c02ce4e9ed
+	github.com/ggsrc/blueprint-go-toolkits/interceptor v0.0.0-20250426034842-e0c02ce4e9ed
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.3.1
 	github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0
 	github.com/kelseyhightower/envconfig v1.4.0
@@ -26,7 +20,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/cloudwego/base64x v0.1.5 // indirect
 	github.com/getsentry/sentry-go v0.32.0 // indirect
-	github.com/ggsrc/blueprint-go-toolkits/zerolog v0.0.0-20250307074235-8cbb76b9e006 // indirect
+	github.com/ggsrc/blueprint-go-toolkits/zerolog v0.0.0-20250426034842-e0c02ce4e9ed // indirect
 	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.10 // indirect

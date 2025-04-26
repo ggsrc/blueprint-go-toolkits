@@ -2,12 +2,10 @@ module github.com/ggsrc/blueprint-go-toolkits/zerolog
 
 go 1.23.0
 
-replace github.com/ggsrc/blueprint-go-toolkits/env => ../env
-
 require (
 	github.com/agoda-com/opentelemetry-go/otelzerolog v0.1.0
 	github.com/agoda-com/opentelemetry-logs-go v0.6.0
-	github.com/ggsrc/blueprint-go-toolkits/env v0.0.0-20240701121102-34284860bec7
+	github.com/ggsrc/blueprint-go-toolkits/env v0.0.0-20250426034842-e0c02ce4e9ed
 	github.com/rs/zerolog v1.34.0
 	github.com/stretchr/testify v1.10.0
 	github.com/uptrace/uptrace-go v1.35.1

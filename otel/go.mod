@@ -1,16 +1,10 @@
 module github.com/ggsrc/blueprint-go-toolkits/otel
 
-go 1.22
-
-replace (
-	github.com/ggsrc/blueprint-go-toolkits/env => ../env
-	github.com/ggsrc/blueprint-go-toolkits/interceptor => ../interceptor
-	github.com/ggsrc/blueprint-go-toolkits/zerolog => ../zerolog
-)
+go 1.23.0
 
 require (
-	github.com/ggsrc/blueprint-go-toolkits/env v0.0.0-20241104085800-47a6678c32d3
-	github.com/rs/zerolog v1.33.0
+	github.com/ggsrc/blueprint-go-toolkits/env v0.0.0-20250426034842-e0c02ce4e9ed
+	github.com/rs/zerolog v1.34.0
 	go.opentelemetry.io/contrib/instrumentation/runtime v0.57.0
 	go.opentelemetry.io/otel v1.32.0
 	go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp v0.8.0

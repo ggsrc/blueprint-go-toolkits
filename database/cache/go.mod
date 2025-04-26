@@ -2,13 +2,9 @@ module github.com/ggsrc/blueprint-go-toolkits/database/cache
 
 go 1.23.0
 
-toolchain go1.23.3
-
-replace github.com/ggsrc/blueprint-go-toolkits/goodns => ../../goodns
-
 require (
 	github.com/coocood/freecache v1.2.4
-	github.com/ggsrc/blueprint-go-toolkits/goodns v0.0.0-20240701121102-34284860bec7
+	github.com/ggsrc/blueprint-go-toolkits/goodns v0.0.0-20250426034842-e0c02ce4e9ed
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/klauspost/compress v1.18.0
 	github.com/redis/go-redis/extra/redisotel/v9 v9.7.3
@@ -40,7 +36,7 @@ require (
 	go.opentelemetry.io/auto/sdk v1.1.0 // indirect
 	go.opentelemetry.io/otel v1.35.0 // indirect
 	go.opentelemetry.io/otel/metric v1.35.0 // indirect
-	go.opentelemetry.io/otel/sdk v1.30.0 // indirect
+	go.opentelemetry.io/otel/sdk v1.35.0 // indirect
 	go.opentelemetry.io/otel/trace v1.35.0 // indirect
 	golang.org/x/mod v0.24.0 // indirect
 	golang.org/x/net v0.39.0 // indirect
