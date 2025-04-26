@@ -16,6 +16,7 @@ This repository contains a collection of reusable Go packages that provide commo
 - **interceptor**: Middleware and interceptors for various Go frameworks
 - **metric**: Metrics collection and reporting
 - **otel**: OpenTelemetry integration for tracing and observability
+- **rediscluster**: Redis cluster client
 - **zerolog**: Zero-allocation logging with structured logs
 
 ## Installation
