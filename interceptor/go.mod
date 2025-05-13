@@ -5,7 +5,6 @@ go 1.23.0
 require (
 	github.com/bytedance/sonic v1.13.2
 	github.com/getsentry/sentry-go v0.32.0
-	github.com/ggsrc/blueprint-go-toolkits/env v0.0.0-20250426034842-e0c02ce4e9ed
 	github.com/ggsrc/blueprint-go-toolkits/zerolog v0.0.0-20250426034842-e0c02ce4e9ed
 	go.opentelemetry.io/otel v1.35.0
 	go.opentelemetry.io/otel/trace v1.35.0
@@ -15,6 +14,7 @@ require (
 require (
 	github.com/bytedance/sonic/loader v0.2.4 // indirect
 	github.com/cloudwego/base64x v0.1.5 // indirect
+	github.com/ggsrc/blueprint-go-toolkits/env v0.0.0-20250426034842-e0c02ce4e9ed // indirect
 	github.com/klauspost/cpuid/v2 v2.2.10 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect

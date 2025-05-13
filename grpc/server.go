@@ -25,10 +25,11 @@ type Server struct {
 }
 
 type ServerConfig struct {
-	Debug    bool   `default:"false"`
-	Port     int    `default:"9090"`
-	RavenDSN string `default:""`
-	Verbose  bool   `default:"false"`
+	Debug     bool   `default:"false"`
+	Port      int    `default:"9090"`
+	SentryDSN string `default:""`
+	SentryEnv string `default:""`
+	Verbose   bool   `default:"false"`
 }
 
 func NewServer(serviceName string, conf *ServerConfig, opts ...grpc.ServerOption) *Server {
@@ -53,7 +54,7 @@ func NewServer(serviceName string, conf *ServerConfig, opts ...grpc.ServerOption
 	}
 
 	interceptors := []grpc.UnaryServerInterceptor{
-		grpcinterceptor.SentryUnaryServerInterceptor(conf.RavenDSN),
+		grpcinterceptor.SentryUnaryServerInterceptor(conf.SentryDSN, conf.SentryEnv),
 		logging.UnaryServerInterceptor(InterceptorLogger(*logger), logging.WithLogOnEvents(loggableEvents...)),
 		grpc_prometheus.UnaryServerInterceptor,
 		grpcinterceptor.ContextUnaryServerInterceptor(),

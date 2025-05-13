@@ -9,12 +9,11 @@ import (
 	"github.com/getsentry/sentry-go"
 	"google.golang.org/grpc"
 
-	"github.com/ggsrc/blueprint-go-toolkits/env"
 	"github.com/ggsrc/blueprint-go-toolkits/zerolog/log"
 )
 
-func SentryUnaryServerInterceptor(ravenDSN string) grpc.UnaryServerInterceptor {
-	err := sentry.Init(sentry.ClientOptions{Dsn: ravenDSN})
+func SentryUnaryServerInterceptor(sentryDSN string, sentryEnv string) grpc.UnaryServerInterceptor {
+	err := sentry.Init(sentry.ClientOptions{Dsn: sentryDSN, Environment: sentryEnv})
 	if err != nil {
 		log.Err(err).Msg("sentry init failed, ignore it and continue...")
 	}
@@ -40,8 +39,8 @@ func SentryUnaryServerInterceptor(ravenDSN string) grpc.UnaryServerInterceptor {
 	}
 }
 
-func SentryUnaryClientInterceptor(ravenDSN string) grpc.UnaryClientInterceptor {
-	err := sentry.Init(sentry.ClientOptions{Dsn: ravenDSN, Environment: env.Env()})
+func SentryUnaryClientInterceptor(sentryDSN string, sentryEnv string) grpc.UnaryClientInterceptor {
+	err := sentry.Init(sentry.ClientOptions{Dsn: sentryDSN, Environment: sentryEnv})
 	if err != nil {
 		log.Err(err).Msg("sentry init failed")
 	}

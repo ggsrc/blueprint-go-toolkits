@@ -16,8 +16,9 @@ import (
 )
 
 type ClientConfig struct {
-	RavenDSN string `default:""`
-	Verbose  bool   `default:"false"`
+	SentryDSN string `default:""`
+	SentryEnv string `default:""`
+	Verbose   bool   `default:"false"`
 }
 
 type Client struct {
@@ -53,7 +54,7 @@ func (c *Client) Dial(ctx context.Context, addr string, opts ...grpc.DialOption)
 	defaultOpts := []grpc.DialOption{
 		grpc.WithDefaultCallOptions(grpc.UseCompressor(gzip.Name)),
 		grpc.WithUnaryInterceptor(chainUnaryClient(
-			grpcinterceptor.SentryUnaryClientInterceptor(c.conf.RavenDSN),
+			grpcinterceptor.SentryUnaryClientInterceptor(c.conf.SentryDSN, c.conf.SentryEnv),
 			grpcinterceptor.ContextUnaryClientInterceptor(),
 			logging.UnaryClientInterceptor(
 				InterceptorLogger(*logger),
