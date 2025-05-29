@@ -16,7 +16,7 @@ type Reader struct {
 // It sets up a consumer group with the given groupID and subscribes to the provided topics.
 //
 // Parameters:
-//   - cfg: Kafka configuration containing broker addresses and other settings
+//   - cfg: Kafka configuration containing bootstrap servers and other settings
 //   - topics: List of topics to subscribe to
 //   - groupID: Consumer group ID for the reader
 //
@@ -41,7 +41,7 @@ func NewReader(
 
 	logger.Info().Msgf("setting up kafka reader in group %s", groupID)
 	r := kafka.NewReader(kafka.ReaderConfig{
-		Brokers:     cfg.BrokerAddrs,
+		Brokers:     cfg.BootstrapServers,
 		GroupTopics: topicsArr,
 		GroupID:     groupID,
 	})

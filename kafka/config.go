@@ -9,7 +9,7 @@ const (
 )
 
 type Config struct {
-	BrokerAddrs []string `required:"true"`
+	BootstrapServers []string `required:"true"`
 }
 
 // ConfigFromEnv generates config from environment variables with default envconfig prefix 'kafka'

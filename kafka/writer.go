@@ -17,8 +17,8 @@ type Writer struct {
 // NewWriter creates a new Kafka writer instance with the specified configuration.
 // It sets up a writer with optimized settings for message delivery:
 // - Uses LeastBytes balancer for efficient message distribution
-// - Configures a 5ms batch timeout for message batching
-// - Connects to the specified Kafka brokers
+// - Configures a 100ms batch timeout for message batching
+// - Connects to the specified Kafka bootstrap servers
 //
 // Parameters:
 //   - cfg: Kafka configuration containing broker addresses and other settings
@@ -37,10 +37,10 @@ func NewWriter(
 
 	logger.Info().Msgf("setting up kafka writer")
 	w := &kafka.Writer{
-		Addr:         kafka.TCP(cfg.BrokerAddrs...),
+		Addr:         kafka.TCP(cfg.BootstrapServers...),
 		Balancer:     &kafka.LeastBytes{},
 		Logger:       logger,
-		BatchTimeout: 5 * time.Millisecond,
+		BatchTimeout: 100 * time.Millisecond,
 	}
 
 	return &Writer{w}, nil
