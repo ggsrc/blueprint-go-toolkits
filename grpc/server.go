@@ -32,7 +32,7 @@ type ServerConfig struct {
 	Verbose   bool   `default:"false"`
 }
 
-func NewServer(serviceName string, conf *ServerConfig, opts ...grpc.ServerOption) *Server {
+func NewServer(serviceName string, conf *ServerConfig, additionalInterceptors ...grpc.UnaryServerInterceptor) *Server {
 	if conf == nil {
 		conf = &ServerConfig{}
 		envconfig.MustProcess("grpc", conf)
@@ -53,12 +53,16 @@ func NewServer(serviceName string, conf *ServerConfig, opts ...grpc.ServerOption
 		loggableEvents = append(loggableEvents, logging.FinishCall)
 	}
 
+	// Core interceptors that are always included
 	interceptors := []grpc.UnaryServerInterceptor{
 		grpcinterceptor.SentryUnaryServerInterceptor(conf.SentryDSN, conf.SentryEnv),
 		logging.UnaryServerInterceptor(InterceptorLogger(*logger), logging.WithLogOnEvents(loggableEvents...)),
 		grpc_prometheus.UnaryServerInterceptor,
 		grpcinterceptor.ContextUnaryServerInterceptor(),
 	}
+
+	// Add additional interceptors in the middle (after core but before debug)
+	interceptors = append(interceptors, additionalInterceptors...)
 
 	if conf.Debug || !env.IsProduction() {
 		interceptors = append(interceptors, grpcinterceptor.LogUnaryServerInterceptor())
@@ -69,7 +73,6 @@ func NewServer(serviceName string, conf *ServerConfig, opts ...grpc.ServerOption
 		grpc.StreamInterceptor(grpc_prometheus.StreamServerInterceptor),
 		grpc.StatsHandler(otelgrpc.NewServerHandler()),
 	}
-	defaultOpts = append(defaultOpts, opts...)
 	s.server = grpc.NewServer(defaultOpts...)
 	grpc_prometheus.Register(s.server)
 	// Prometheus histograms are a great way to measure latency distributions of your RPCs. However,
